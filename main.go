@@ -81,10 +81,15 @@ func main() {
 				return
 			}
 
+			var stopDate any = nil
+			if value.StopDate != nil {
+				stopDate = value.StopDate.Local().String()[:23]
+			}
+
 			fields := logdy.Fields{
 				"Name":      *value.Name,
 				"StartDate": value.StartDate.Local().String()[:23],
-				"StopDate":  value.StopDate.Local().String()[:23],
+				"StopDate":  stopDate,
 				"Status":    value.Status,
 			}
 
